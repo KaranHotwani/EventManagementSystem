@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<style>
+			.header{
+				border:2px solid black;
+				background-color:#b8860b;
+				padding-left:20%;
+				padding-right:10%;
+				padding-top:30px;
+				padding-bottom:30px;
+				width:30%;
+				margin-left:20%;
+				font-size:45px;
+				}
+				
+				p {
+					
+					padding-top:10px;
+					margin-left:0%;
+					font-size:25px;
+					text-align:CENTER;
+					color: blue;	
+					
+					
+					}
+				h3{
+				padding-top:10px;
+					margin-left:0%;
+					font-size:25px;
+					text-align:CENTER;
+					color: blue;	
+					
+				}
+				
+				.div{
+			border:5px solid black;
+			text-align:center;
+			background-color:#b8860b;
+			width:300px;
+			padding:50px;
+			margin-left:450px;
+			margin-top:15px;
+			
+		}
+		</style>
+	</head>
+	<body style="border:1px solid black">
+		
+		<h2 class="header"> PYTHON SEMINAR</h2>
+	
+		<p> <b>DETAILS:</b> <br><br>This seminar is arranged by ves institute of technology.<br> It is the course of 7 days and 2 hours 
+			each day after college. <br>Two batches are available<br> 1. 3-5pm <br>2. 4-6pm.<br> Certificates will be given for 
+			participation and for performing practical exams.<br><br>Enter your details below for participation. </p>
+		
+		<form method="post" action="#" class="div" >
+					<h2> PYTHON</h2>
+					<input type="text" name="Yname" placeholder="Name" style="width:230px;height:25px;border:2px solid grey;"/><br><br>
+					<input type="text" name="Ename" placeholder=" Event Name" style="width:230px;height:25px;border:2px solid grey;"/><br><br>
+					<input type="text" name="cls" placeholder=" Class and Roll no" style="width:230px;height:25px;border:2px solid grey;"/><br><br>
+					<input type="Submit" name="participate" style="width:100px;height:30px"/><br>
+			
+		</form>
+		
+	</body>
+</html>
+
+<?php
+	$servername="LocalHost";
+	$username="root";
+	$password="";
+	$dbname="vesit_events";
+	
+	$conn=new mysqli($servername,$username,$password,$dbname);
+	if($conn->connect_error)
+	{
+		die("connection failed".$conn->connect_error);
+	}
+	else 
+		echo "<h1><center>connected database successfully </center></h1>";
+	if(isset($_POST['participate']))
+	{
+		$name1=$_POST['Yname'];
+		$name2=$_POST['Ename'];
+		$CRNO=$_POST['cls'];
+		
+		$sql="insert into python values ('$name1','$name2','$CRNO')";
+		if ($conn->query($sql) === TRUE) {
+				echo "<h1><center>You have successfully registered. THANKYOU </h1></center>";
+			} 	
+			else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+	}
+?>
